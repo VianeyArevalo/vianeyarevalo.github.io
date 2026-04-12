@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enfermera Vianey Arévalo | Atención Domiciliaria Profesional</title>
+  <meta name="description" content="Servicios de enfermería a domicilio en Cúcuta, Los Patios y Villa del Rosario. Inyectología, curaciones, sueroterapia y más."/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --teal:       #0a9396;
+      --teal-dark:  #005f73;
+      --teal-light: #94d2bd;
+      --cream:      #fefae0;
+      --warm-white: #f8f9fa;
+      --text-dark:  #1a1a2e;
+      --text-mid:   #3d405b;
+      --accent:     #ee9b00;
+      --white:      #ffffff;
+      --whatsapp:   #25d366;
+      --shadow:     0 8px 32px rgba(0,95,115,0.12);
+      --radius:     16px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-dark);
+      background: var(--warm-white);
+      overflow-x: hidden;
+    }
+
+    /* ───── NAVBAR ───── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(10,147,150,0.12);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px;
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 20px rgba(0,95,115,0.15); }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      display: grid; place-items: center; color: #fff; font-size: 18px;
+    }
+    .nav-logo-text { line-height: 1.2; }
+    .nav-logo-text strong {
+      display: block; font-family: 'Playfair Display', serif;
+      font-size: 15px; color: var(--teal-dark);
+    }
+    .nav-logo-text span { font-size: 11px; color: var(--text-mid); font-weight: 300; }
+
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none; font-size: 14px; font-weight: 500;
+      color: var(--text-mid); transition: color .2s;
+      position: relative; padding-bottom: 2px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: var(--teal);
+      transition: width .3s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--teal); color: #fff !important;
+      padding: 8px 20px; border-radius: 50px;
+      font-weight: 600 !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--teal-dark) !important; color: #fff !important; }
+
+    /* hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--teal-dark); border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed; top: 70px; left: 0; right: 0;
+      background: #fff; padding: 24px 5%; z-index: 999;
+      box-shadow: 0 8px 24px rgba(0,0,0,.1);
+      flex-direction: column; gap: 20px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; font-size: 16px; font-weight: 500;
+      color: var(--text-dark); border-bottom: 1px solid #eee; padding-bottom: 12px;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ───── HERO ───── */
+    #inicio {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #005f73 0%, #0a9396 45%, #94d2bd 100%);
+      display: flex; align-items: center;
+      padding: 100px 5% 60px;
+      position: relative; overflow: hidden;
+    }
+    #inicio::before {
+      content: '';
+      position: absolute; top: -50%; right: -10%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    #inicio::after {
+      content: '';
+      position: absolute; bottom: -100px; left: -50px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+      position: relative; z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff; font-size: 13px; font-weight: 500;
+      padding: 6px 16px; border-radius: 50px; margin-bottom: 24px;
+    }
+    .hero-badge i { color: var(--accent); }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.15; color: #fff; margin-bottom: 20px;
+    }
+    .hero-text h1 span { color: var(--accent); }
+
+    .hero-text p {
+      font-size: 17px; color: rgba(255,255,255,0.88);
+      line-height: 1.7; margin-bottom: 36px; font-weight: 300;
+    }
+
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--whatsapp); color: #fff;
+      padding: 14px 28px; border-radius: 50px;
+      font-weight: 600; font-size: 15px; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.45); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.15); color: #fff;
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 14px 28px; border-radius: 50px;
+      font-weight: 500; font-size: 15px; text-decoration: none;
+      backdrop-filter: blur(8px);
+      transition: background .2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.25); }
+
+    .hero-card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 24px; padding: 36px;
+      color: #fff;
+    }
+    .hero-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; margin-bottom: 24px;
+      opacity: .9;
+    }
+    .hero-stat-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .hero-stat {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 16px; text-align: center;
+    }
+    .hero-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 700; color: var(--accent);
+    }
+    .hero-stat-label { font-size: 12px; opacity: .8; margin-top: 4px; }
+
+    .hero-zone {
+      margin-top: 20px; padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; opacity: .85;
+    }
+    .hero-zone i { color: var(--accent); }
+
+    /* ───── SECTIONS SHARED ───── */
+    section { padding: 90px 5%; }
+    .section-label {
+      font-size: 12px; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 42px); color: var(--text-dark);
+      line-height: 1.25; margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 16px; color: var(--text-mid);
+      line-height: 1.7; max-width: 560px; font-weight: 300;
+    }
+    .section-header { margin-bottom: 56px; }
+    .centered { text-align: center; }
+    .centered .section-sub { margin: 0 auto; }
+
+    /* ───── SOBRE MÍ ───── */
+    #sobre-mi { background: var(--white); }
+
+    .about-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;
+    }
+
+    .about-img-wrap { position: relative; }
+    .about-img-placeholder {
+      width: 100%; aspect-ratio: 3/4; border-radius: 24px;
+      background: linear-gradient(135deg, var(--teal-light), var(--teal));
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: #fff; font-size: 80px; gap: 16px;
+    }
+    .about-img-placeholder p { font-size: 15px; opacity: .8; }
+    .about-img-placeholder input[type="file"] {
+      display: none;
+    }
+    .about-img-placeholder label {
+      cursor: pointer; background: rgba(255,255,255,.2);
+      padding: 10px 20px; border-radius: 50px; font-size: 14px;
+      border: 1px solid rgba(255,255,255,.4);
+    }
+
+    .about-badge-float {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--accent); color: #fff;
+      border-radius: 16px; padding: 16px 20px;
+      box-shadow: 0 8px 24px rgba(238,155,0,.3);
+      text-align: center;
+    }
+    .about-badge-float strong { display: block; font-size: 28px; font-family: 'Playfair Display', serif; }
+    .about-badge-float span { font-size: 12px; opacity: .9; }
+
+    .about-text .section-header { margin-bottom: 32px; }
+
+    .about-text p {
+      font-size: 16px; color: var(--text-mid);
+      line-height: 1.8; margin-bottom: 20px; font-weight: 300;
+    }
+
+    .about-checks { display: flex; flex-direction: column; gap: 12px; margin: 28px 0; }
+    .about-check {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 15px; color: var(--text-dark); font-weight: 500;
+    }
+    .about-check i { color: var(--teal); font-size: 18px; }
+
+    /* ───── SERVICIOS ───── */
+    #servicios { background: var(--warm-white); }
+
+    .services-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+
+    .service-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 32px 28px; border: 1px solid rgba(10,147,150,0.1);
+      transition: transform .3s, box-shadow .3s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--teal), var(--teal-light));
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+
+    .service-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(10,147,150,0.1), rgba(10,147,150,0.2));
+      display: grid; place-items: center;
+      font-size: 24px; color: var(--teal); margin-bottom: 20px;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; color: var(--text-dark); margin-bottom: 10px;
+    }
+    .service-card p { font-size: 14px; color: var(--text-mid); line-height: 1.6; font-weight: 300; }
+    .service-time {
+      margin-top: 16px; display: flex; align-items: center; gap: 6px;
+      font-size: 12px; color: var(--teal); font-weight: 600;
+    }
+
+    /* ───── GALERÍA ───── */
+    #galeria { background: var(--white); }
+
+    .gallery-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1; border-radius: 16px; overflow: hidden;
+      background: linear-gradient(135deg, var(--teal-light), var(--teal));
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: #fff; cursor: pointer; position: relative;
+      transition: transform .3s;
+    }
+    .gallery-item:hover { transform: scale(1.02); }
+    .gallery-item i { font-size: 32px; opacity: .6; }
+    .gallery-item p { font-size: 13px; opacity: .8; margin-top: 8px; }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      position: absolute; inset: 0;
+    }
+    .gallery-item.large { grid-column: span 2; }
+
+    .gallery-note {
+      text-align: center; margin-top: 24px; max-width: 1100px; margin-inline: auto;
+      font-size: 13px; color: var(--text-mid);
+      background: rgba(10,147,150,0.06); border-radius: 12px; padding: 14px;
+    }
+
+    /* ───── CONTACTO ───── */
+    #contacto { background: var(--warm-white); }
+
+    .contact-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 24px; }
+
+    .contact-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 24px; display: flex; gap: 18px; align-items: flex-start;
+      border: 1px solid rgba(10,147,150,0.1);
+      transition: box-shadow .2s;
+    }
+    .contact-card:hover { box-shadow: var(--shadow); }
+    .contact-card-icon {
+      width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      display: grid; place-items: center; color: #fff; font-size: 20px;
+    }
+    .contact-card h4 { font-size: 14px; color: var(--text-mid); margin-bottom: 4px; }
+    .contact-card p, .contact-card a {
+      font-size: 15px; font-weight: 600; color: var(--text-dark);
+      text-decoration: none;
+    }
+    .contact-card a:hover { color: var(--teal); }
+
+    .contact-whatsapp-big {
+      background: linear-gradient(135deg, #128c7e, var(--whatsapp));
+      color: #fff; border-radius: var(--radius); padding: 28px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 12px; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 24px rgba(37,211,102,0.3);
+    }
+    .contact-whatsapp-big:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(37,211,102,0.4); }
+    .contact-whatsapp-big i { font-size: 36px; }
+    .contact-whatsapp-big strong { font-size: 18px; }
+    .contact-whatsapp-big span { font-size: 14px; opacity: .9; }
+
+    /* FORM */
+    .contact-form-wrap {
+      background: var(--white); border-radius: var(--radius);
+      padding: 36px; border: 1px solid rgba(10,147,150,0.1);
+    }
+    .contact-form-wrap h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; margin-bottom: 24px; color: var(--text-dark);
+    }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block; font-size: 13px; font-weight: 600;
+      color: var(--text-mid); margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 1.5px solid #e8eaed; border-radius: 10px;
+      padding: 12px 14px; font-size: 14px; font-family: 'DM Sans', sans-serif;
+      color: var(--text-dark); background: var(--warm-white);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(10,147,150,0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .btn-submit {
+      width: 100%; padding: 14px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      color: #fff; border: none; border-radius: 10px;
+      font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif;
+      cursor: pointer; transition: opacity .2s, transform .2s;
+    }
+    .btn-submit:hover { opacity: .9; transform: translateY(-1px); }
+
+    .form-success {
+      display: none; background: rgba(10,147,150,0.08);
+      border: 1px solid var(--teal); border-radius: 10px;
+      padding: 16px; text-align: center; color: var(--teal-dark);
+      font-weight: 500; margin-top: 16px;
+    }
+
+    /* ───── REDES SOCIALES ───── */
+    .social-strip {
+      background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+      padding: 50px 5%; text-align: center;
+    }
+    .social-strip h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; color: #fff; margin-bottom: 8px;
+    }
+    .social-strip p { color: rgba(255,255,255,.8); margin-bottom: 28px; font-size: 15px; }
+    .social-icons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .social-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 24px; border-radius: 50px;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .social-btn:hover { transform: translateY(-2px); }
+    .social-btn.fb { background: #1877f2; color: #fff; }
+    .social-btn.ig { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+    .social-btn.wa { background: var(--whatsapp); color: #fff; }
+    .social-btn.yt { background: #ff0000; color: #fff; }
+
+    /* ───── FOOTER ───── */
+    footer {
+      background: var(--text-dark); color: rgba(255,255,255,.7);
+      padding: 40px 5%; text-align: center;
+    }
+    footer strong { color: #fff; font-family: 'Playfair Display', serif; }
+    footer p { font-size: 13px; margin-top: 8px; line-height: 1.6; }
+
+    /* ───── WHATSAPP FLOAT ───── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: var(--whatsapp); color: #fff;
+      display: grid; place-items: center; font-size: 26px;
+      text-decoration: none; box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+      transition: transform .2s;
+    }
+    .wa-float:hover { transform: scale(1.1); }
+    .wa-float::after {
+      content: ''; position: absolute;
+      width: 100%; height: 100%; border-radius: 50%;
+      background: var(--whatsapp); opacity: .4;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: .4; }
+      70% { transform: scale(1.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 0; }
+    }
+
+    /* ───── RESPONSIVE ───── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-card { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item.large { grid-column: span 1; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      section { padding: 60px 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="navbar">
+  <a href="#inicio" class="nav-logo">
+    <div class="nav-logo-icon"><i class="fas fa-heartbeat"></i></div>
+    <div class="nav-logo-text">
+      <strong>Vianey Arévalo</strong>
+      <span>Enfermera Profesional</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#contacto" class="nav-cta">Agendar cita</a></li>
+  </ul>
+
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- menú móvil -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#inicio" onclick="closeMobile()">Inicio</a>
+  <a href="#sobre-mi" onclick="closeMobile()">Sobre mí</a>
+  <a href="#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="#galeria" onclick="closeMobile()">Galería</a>
+  <a href="#contacto" onclick="closeMobile()">Agendar cita</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="inicio">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <i class="fas fa-shield-heart"></i>
+        Enfermería Domiciliaria Profesional
+      </div>
+      <h1>Tu salud merece atención <span>experta y humana</span></h1>
+      <p>Soy Vianey Arévalo, enfermera profesional independiente. Llevo cuidado de calidad directamente a tu hogar en Cúcuta, Los Patios y Villa del Rosario.</p>
+      <div class="hero-btns">
+        <a href="https://wa.me/573148223252?text=Hola%20Vianey%2C%20quisiera%20agendar%20un%20servicio%20de%20enfermer%C3%ADa%20a%20domicilio." class="btn-primary" target="_blank">
+          <i class="fab fa-whatsapp"></i> Agendar por WhatsApp
+        </a>
+        <a href="#servicios" class="btn-secondary">
+          <i class="fas fa-stethoscope"></i> Ver servicios
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <p class="hero-card-title">Mi compromiso contigo</p>
+      <div class="hero-stat-grid">
+        <div class="hero-stat">
+          <div class="hero-stat-num">+10</div>
+          <div class="hero-stat-label">Años de experiencia</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label">Técnica segura</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">6</div>
+          <div class="hero-stat-label">Servicios disponibles</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">🏠</div>
+          <div class="hero-stat-label">Atención en tu hogar</div>
+        </div>
+      </div>
+      <div class="hero-zone">
+        <i class="fas fa-map-marker-alt"></i>
+        Cúcuta · Los Patios · Villa del Rosario
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOBRE MÍ ═══ -->
+<section id="sobre-mi">
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <div class="about-img-placeholder" id="aboutImgWrap">
+        <i class="fas fa-user-nurse"></i>
+        <p>Tu foto aquí</p>
+        <label for="photoUpload">📷 Subir foto</label>
+        <input type="file" id="photoUpload" accept="image/*" onchange="previewPhoto(event,'aboutImgWrap')"/>
+      </div>
+      <div class="about-badge-float">
+        <strong>+10</strong>
+        <span>años de<br>experiencia</span>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <div class="section-header">
+        <p class="section-label">Sobre mí</p>
+        <h2 class="section-title">Enfermera Vianey Arévalo</h2>
+        <p class="section-sub">Profesional independiente comprometida con tu bienestar.</p>
+      </div>
+      <p>Soy enfermera profesional con más de 10 años de experiencia en atención clínica y domiciliaria. Trabajo de manera independiente porque creo que cada paciente merece atención personalizada, cálida y segura.</p>
+      <p>Mi enfoque está en procedimientos rápidos, eficientes y con técnica de alto nivel, respetando siempre tu tiempo, tu hogar y tu tranquilidad.</p>
+      <div class="about-checks">
+        <div class="about-check"><i class="fas fa-check-circle"></i> Enfermera titulada y con experiencia comprobada</div>
+        <div class="about-check"><i class="fas fa-check-circle"></i> Materiales estériles y de calidad en cada visita</div>
+        <div class="about-check"><i class="fas fa-check-circle"></i> Puntualidad y respeto en tu hogar</div>
+        <div class="about-check"><i class="fas fa-check-circle"></i> Atención humanizada y sin prisas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICIOS ═══ -->
+<section id="servicios">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-header centered">
+      <p class="section-label">Lo que ofrezco</p>
+      <h2 class="section-title">Servicios de enfermería</h2>
+      <p class="section-sub">Procedimientos profesionales, rápidos y seguros directamente en tu hogar.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-syringe"></i></div>
+        <h3>Inyectología a Domicilio</h3>
+        <p>Aplicación de medicamentos intramuscular, subcutánea o intravenosa con técnica segura, precisa y sin dolor.</p>
+        <div class="service-time"><i class="fas fa-clock"></i> 10 – 15 min</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-prescription"></i></div>
+        <h3>Medicamentos con Fórmula Médica</h3>
+        <p>Administración profesional de fármacos prescritos por tu médico. Seguimiento del esquema de dosis indicado.</p>
+        <div class="service-time"><i class="fas fa-clock"></i> 15 – 20 min</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-tint"></i></div>
+        <h3>Sueroterapia y Sueros Vitaminados</h3>
+        <p>Hidratación intravenosa y sueros con vitaminas, minerales y antioxidantes para recuperar tu energía y bienestar.</p>
+        <div class="service-time"><i class="fas fa-clock"></i> 30 – 45 min</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-band-aid"></i></div>
+        <h3>Curaciones y Heridas</h3>
+        <p>Limpieza, desinfección y cambio de apósitos para heridas, quemaduras o puntos postoperatorios con materiales estériles.</p>
+        <div class="service-time"><i class="fas fa-clock"></i> 20 – 30 min</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-procedures"></i></div>
+        <h3>Cambios de Sonda</h3>
+        <p>Colocación y cambio de sonda vesical o nasogástrica con técnica estéril, garantizando comodidad y seguridad.</p>
+        <div class="service-time"><i class="fas fa-clock"></i> 30 – 45 min</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-vial"></i></div>
+        <h3>Toma de Muestra de Laboratorio</h3>
+        <p>Toma de muestras de sangre y orina en la comodidad de tu hogar con higiene, precisión y rapidez.</p>
+        <div class="service-time"><i class="fas fa-clock"></i> 10 – 20 min</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALERÍA ═══ -->
+<section id="galeria">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-header centered">
+      <p class="section-label">Galería</p>
+      <h2 class="section-title">Fotos y videos de mi trabajo</h2>
+      <p class="section-sub">Aquí podrás ver evidencias reales de mis servicios y atenciones.</p>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item large" onclick="document.getElementById('g0').click()">
+        <i class="fas fa-image"></i><p>Foto / Video 1</p>
+        <input type="file" id="g0" accept="image/*,video/*" style="display:none" onchange="galleryUpload(event,this.closest('.gallery-item'))"/>
+      </div>
+      <div class="gallery-item" onclick="document.getElementById('g1').click()">
+        <i class="fas fa-image"></i><p>Foto / Video 2</p>
+        <input type="file" id="g1" accept="image/*,video/*" style="display:none" onchange="galleryUpload(event,this.closest('.gallery-item'))"/>
+      </div>
+      <div class="gallery-item" onclick="document.getElementById('g2').click()">
+        <i class="fas fa-image"></i><p>Foto 3</p>
+        <input type="file" id="g2" accept="image/*,video/*" style="display:none" onchange="galleryUpload(event,this.closest('.gallery-item'))"/>
+      </div>
+      <div class="gallery-item" onclick="document.getElementById('g3').click()">
+        <i class="fas fa-image"></i><p>Foto 4</p>
+        <input type="file" id="g3" accept="image/*,video/*" style="display:none" onchange="galleryUpload(event,this.closest('.gallery-item'))"/>
+      </div>
+      <div class="gallery-item" onclick="document.getElementById('g4').click()">
+        <i class="fas fa-image"></i><p>Foto 5</p>
+        <input type="file" id="g4" accept="image/*,video/*" style="display:none" onchange="galleryUpload(event,this.closest('.gallery-item'))"/>
+      </div>
+    </div>
+    <p class="gallery-note">⚠️ Las fotos que subas aquí solo se ven en tu navegador temporalmente. Para que aparezcan permanentemente en tu web, te enseñaré a subirlas a GitHub.</p>
+  </div>
+</section>
+
+<!-- ═══ CONTACTO ═══ -->
+<section id="contacto">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-header centered">
+      <p class="section-label">Contacto</p>
+      <h2 class="section-title">Agenda tu cita</h2>
+      <p class="section-sub">Escríbeme por WhatsApp para respuesta inmediata o deja tu solicitud en el formulario.</p>
+    </div>
+    <div class="contact-grid">
+
+      <div class="contact-info">
+        <a href="https://wa.me/573148223252?text=Hola%20Vianey%2C%20quisiera%20agendar%20un%20servicio%20de%20enfermer%C3%ADa%20a%20domicilio." class="contact-whatsapp-big" target="_blank">
+          <i class="fab fa-whatsapp"></i>
+          <strong>Escríbeme al WhatsApp</strong>
+          <span>314 822 3252 — Respuesta inmediata</span>
+        </a>
+
+        <div class="contact-card">
+          <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <h4>Zona de cobertura</h4>
+            <p>Cúcuta · Los Patios · Villa del Rosario</p>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon"><i class="fas fa-clock"></i></div>
+          <div>
+            <h4>Horario de atención</h4>
+            <p>Lun – Sáb: 8:00 a.m. – 5:00 p.m.<br><small style="font-weight:400;color:var(--text-mid)">Domingos solo con cita previa</small></p>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <h4>Teléfono / WhatsApp</h4>
+            <a href="tel:+573148223252">314 822 3252</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap">
+        <h3>Deja tu solicitud</h3>
+        <form id="contactForm" onsubmit="sendForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre completo *</label>
+              <input type="text" name="nombre" placeholder="Tu nombre" required/>
+            </div>
+            <div class="form-group">
+              <label>Teléfono / WhatsApp *</label>
+              <input type="tel" name="telefono" placeholder="3XX XXX XXXX" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Servicio que necesitas *</label>
+            <select name="servicio" required>
+              <option value="">Selecciona un servicio...</option>
+              <option>Inyectología a domicilio</option>
+              <option>Aplicación de medicamentos con fórmula médica</option>
+              <option>Sueroterapia y sueros vitaminados</option>
+              <option>Curaciones y heridas</option>
+              <option>Cambio de sonda</option>
+              <option>Toma de muestra de laboratorio</option>
+              <option>Otro / No sé cuál necesito</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Fecha deseada</label>
+              <input type="date" name="fecha"/>
+            </div>
+            <div class="form-group">
+              <label>Hora aproximada</label>
+              <input type="time" name="hora"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Dirección o barrio</label>
+            <input type="text" name="direccion" placeholder="Ej: Barrio La Libertad, Cúcuta"/>
+          </div>
+          <div class="form-group">
+            <label>Comentarios adicionales</label>
+            <textarea name="comentarios" placeholder="Escribe aquí cualquier detalle importante sobre tu caso..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">
+            <i class="fas fa-paper-plane"></i> Enviar solicitud
+          </button>
+          <div class="form-success" id="formSuccess">
+            ✅ ¡Gracias! Tu solicitud fue enviada. Te contactaré pronto por WhatsApp para confirmar tu cita. 💙
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REDES SOCIALES ═══ -->
+<div class="social-strip">
+  <h3>Sígueme en redes sociales</h3>
+  <p>Comparto consejos de salud, novedades y testimonios de pacientes</p>
+  <div class="social-icons">
+    <a href="#" class="social-btn fb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+    <a href="#" class="social-btn ig" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://wa.me/573148223252" class="social-btn wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="#" class="social-btn yt" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <strong>Enfermera Vianey Arévalo</strong>
+  <p>Atención domiciliaria profesional · Cúcuta, Los Patios y Villa del Rosario<br>
+  © 2025 Todos los derechos reservados.</p>
+</footer>
+
+<!-- ═══ WhatsApp flotante ═══ -->
+<a href="https://wa.me/573148223252?text=Hola%20Vianey%2C%20quisiera%20agendar%20un%20servicio%20de%20enfermer%C3%ADa%20a%20domicilio." class="wa-float" target="_blank" title="Escribir por WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Hamburger
+  const ham = document.getElementById('hamburger');
+  const mob = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+  function closeMobile() {
+    ham.classList.remove('open');
+    mob.classList.remove('open');
+  }
+
+  // Photo preview (Sobre mí)
+  function previewPhoto(e, wrapperId) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const wrap = document.getElementById(wrapperId);
+    const url = URL.createObjectURL(file);
+    wrap.innerHTML = `<img src="${url}" alt="Foto Vianey Arévalo" style="width:100%;height:100%;object-fit:cover;border-radius:24px;"/>`;
+  }
+
+  // Gallery upload
+  function galleryUpload(e, item) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    if (file.type.startsWith('video')) {
+      item.innerHTML = `<video src="${url}" autoplay muted loop style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:16px;"></video>`;
+    } else {
+      item.innerHTML = `<img src="${url}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:16px;"/>`;
+    }
+  }
+
+  // Form → WhatsApp
+  function sendForm(e) {
+    e.preventDefault();
+    const f = e.target;
+    const nombre   = f.nombre.value;
+    const telefono = f.telefono.value;
+    const servicio = f.servicio.value;
+    const fecha    = f.fecha.value || 'No especificada';
+    const hora     = f.hora.value  || 'No especificada';
+    const dir      = f.direccion.value || 'No especificada';
+    const nota     = f.comentarios.value || 'Ninguno';
+
+    const msg = `Hola Vianey 👋 Quiero agendar un servicio:
+%0A👤 *Nombre:* ${nombre}
+%0A📱 *Teléfono:* ${telefono}
+%0A💉 *Servicio:* ${servicio}
+%0A📅 *Fecha:* ${fecha}  ⏰ *Hora:* ${hora}
+%0A📍 *Dirección:* ${dir}
+%0A📝 *Notas:* ${nota}`;
+
+    window.open(`https://wa.me/573148223252?text=${msg}`, '_blank');
+    document.getElementById('formSuccess').style.display = 'block';
+    f.reset();
+  }
+</script>
+</body>
+</html>
