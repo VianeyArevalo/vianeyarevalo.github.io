@@ -98,6 +98,21 @@
     .service-card p{font-size:13px;color:var(--text-mid);line-height:1.6;font-weight:300}
     .service-time{margin-top:14px;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--teal);font-weight:600}
 
+    /* CONSULTA VIRTUAL */
+    .virtual-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+    .virtual-card{background:var(--white);border-radius:var(--radius);padding:30px;border:1px solid rgba(10,147,150,.2);transition:transform .3s;box-shadow:0 4px 12px rgba(0,0,0,.02)}
+    .virtual-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+    .virtual-icon{font-size:36px;color:var(--teal);margin-bottom:16px}
+    .virtual-card h3{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:12px;color:var(--teal-dark)}
+    .virtual-card p{font-size:13px;color:var(--text-mid);line-height:1.6;margin-bottom:12px}
+    .virtual-badge{background:rgba(238,155,0,.1);color:#b45f06;border-radius:40px;padding:4px 12px;font-size:11px;font-weight:700;display:inline-block}
+    .payment-methods{display:flex;gap:10px;margin-top:15px;flex-wrap:wrap}
+    .payment-badge{background:var(--warm-white);padding:5px 12px;border-radius:40px;font-size:11px;font-weight:600;color:var(--text-mid)}
+    .virtual-note{background:#e9f7f5;border-left:4px solid var(--teal);border-radius:10px;padding:18px 20px;margin-top:32px;max-width:1100px;margin-left:auto;margin-right:auto}
+    .virtual-note p{margin:0;font-size:13px;color:var(--text-dark)}
+    .virtual-note i{margin-right:6px;color:var(--teal)}
+    @media(max-width:680px){.virtual-grid{grid-template-columns:1fr}}
+
     /* PRODUCTOS */
     #productos{background:var(--white)}
     .products-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -220,6 +235,7 @@
     <li><a href="#inicio">Inicio</a></li>
     <li><a href="#sobre-mi">Sobre mí</a></li>
     <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#consulta-virtual">Consulta Virtual</a></li>
     <li><a href="#productos">Productos</a></li>
     <li><a href="#galeria">Galería</a></li>
     <li><a href="#politicas">Políticas</a></li>
@@ -232,6 +248,7 @@
   <a href="#inicio"    onclick="closeMobile()">Inicio</a>
   <a href="#sobre-mi" onclick="closeMobile()">Sobre mí</a>
   <a href="#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="#consulta-virtual" onclick="closeMobile()">Consulta Virtual</a>
   <a href="#productos" onclick="closeMobile()">Productos</a>
   <a href="#galeria"  onclick="closeMobile()">Galería</a>
   <a href="#politicas" onclick="closeMobile()">Políticas</a>
@@ -308,6 +325,28 @@
       <div class="service-card"><div class="service-icon"><i class="fas fa-band-aid"></i></div><h3>Curaciones y Heridas</h3><p>Limpieza, desinfección y cambio de apósitos para heridas, quemaduras o puntos postoperatorios con materiales estériles.</p><div class="service-time"><i class="fas fa-clock"></i> 20 – 30 min</div></div>
       <div class="service-card"><div class="service-icon"><i class="fas fa-procedures"></i></div><h3>Cambios de Sonda</h3><p>Colocación y cambio de sonda vesical o nasogástrica con técnica estéril, garantizando comodidad y seguridad.</p><div class="service-time"><i class="fas fa-clock"></i> 30 – 45 min</div></div>
       <div class="service-card"><div class="service-icon"><i class="fas fa-vial"></i></div><h3>Toma de Muestra de Laboratorio</h3><p>Toma de muestras de sangre y orina en la comodidad de tu hogar con higiene, precisión y rapidez.</p><div class="service-time"><i class="fas fa-clock"></i> 10 – 20 min</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTA VIRTUAL (NUEVA SECCIÓN) -->
+<section id="consulta-virtual" style="background: var(--white);">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-header centered">
+      <p class="section-label">📱 Atención remota</p>
+      <h2 class="section-title">Consulta Virtual de Enfermería</h2>
+      <p class="section-sub">Orientación profesional desde la comodidad de tu casa. Pago seguro por Nequi o Daviplata.</p>
+    </div>
+    <div class="virtual-grid">
+      <div class="virtual-card"><div class="virtual-icon"><i class="fas fa-video"></i></div><h3>📹 Orientación sobre medicamentos y dosis</h3><p>Resuelve dudas sobre horarios, interacciones o efectos de tus fármacos con una enfermera experta.</p><div class="virtual-badge">🕒 20 min</div></div>
+      <div class="virtual-card"><div class="virtual-icon"><i class="fas fa-chart-line"></i></div><h3>🩺 Revisión de resultados de laboratorio</h3><p>Analiza tus exámenes de sangre, orina o perfiles, y recibe una explicación clara de cada valor.</p><div class="virtual-badge">🕒 25 min</div></div>
+      <div class="virtual-card"><div class="virtual-icon"><i class="fas fa-hand-holding-heart"></i></div><h3>💊 Guía para manejo de heridas leves en casa</h3><p>Aprende paso a paso cómo curar heridas pequeñas, quemaduras o puntos sin riesgos.</p><div class="virtual-badge">🕒 15 min</div></div>
+      <div class="virtual-card"><div class="virtual-icon"><i class="fas fa-user-md"></i></div><h3>📋 Asesoría postoperatoria sin salir de casa</h3><p>Recomendaciones sobre cuidados, signos de alarma y movilización tras una cirugía.</p><div class="virtual-badge">🕒 30 min</div></div>
+      <div class="virtual-card"><div class="virtual-icon"><i class="fas fa-capsules"></i></div><h3>🧴 Recomendación de productos y suplementos</h3><p>Recibe sugerencias personalizadas de vitaminas, apósitos o productos de bienestar según tu necesidad.</p><div class="virtual-badge">🕒 15 min</div></div>
+      <div class="virtual-card"><div class="virtual-icon"><i class="fas fa-credit-card"></i></div><h3>💰 Pago seguro por Nequi o Daviplata</h3><p>Antes de la videollamada deberás realizar el pago. Una vez confirmado, te enviaré el enlace para la reunión por WhatsApp o Google Meet.</p><div class="payment-methods"><span class="payment-badge"><i class="fas fa-mobile-alt"></i> Nequi: 3148223252</span><span class="payment-badge"><i class="fas fa-building"></i> Daviplata: 3148223252</span><span class="payment-badge"><i class="fab fa-whatsapp"></i> Coordinar cita</span></div></div>
+    </div>
+    <div class="virtual-note">
+      <p><i class="fas fa-calendar-check"></i> <strong>¿Cómo agendar tu consulta virtual?</strong> Escríbeme al WhatsApp, indica qué servicio virtual necesitas, realiza el pago por Nequi o Daviplata y enseguida coordinamos la videollamada por WhatsApp o Google Meet. 🩺</p>
     </div>
   </div>
 </section>
@@ -406,6 +445,7 @@
               <option>Curaciones y heridas</option>
               <option>Cambio de sonda</option>
               <option>Toma de muestra de laboratorio</option>
+              <option>Consulta virtual de enfermería</option>
               <option>Consulta sobre productos o suplementos</option>
               <option>Otro / No sé cuál necesito</option>
             </select>
@@ -491,7 +531,6 @@
     };
 
     try {
-      // Enviar a Formspree (correo de respaldo) y a Make vía Google Apps Script (sin CORS)
       await Promise.allSettled([
         fetch('https://formspree.io/f/xeevjbjr', {
           method: 'POST',
@@ -509,7 +548,6 @@
       document.getElementById('formSuccess').style.display = 'block';
       f.reset();
 
-      // Abre WhatsApp con el resumen
       const msg = `Hola Vianey 👋 Acabo de enviar mi solicitud por el formulario web.%0A%0A👤 *Nombre:* ${data.nombre}%0A📱 *Teléfono:* ${data.telefono}%0A💉 *Servicio:* ${data.servicio}%0A📍 *Dirección:* ${data.direccion}%0A📝 *Notas:* ${data.comentarios}`;
       setTimeout(() => window.open(`https://wa.me/573148223252?text=${msg}`, '_blank'), 800);
 
