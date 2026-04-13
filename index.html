@@ -395,6 +395,7 @@
             <div class="form-group"><label>Nombre completo *</label><input type="text" name="nombre" placeholder="Tu nombre" required/></div>
             <div class="form-group"><label>Teléfono / WhatsApp *</label><input type="tel" name="telefono" placeholder="3XX XXX XXXX" required/></div>
           </div>
+          <div class="form-group"><label>Correo electrónico</label><input type="email" name="email" placeholder="tucorreo@gmail.com"/></div>
           <div class="form-group">
             <label>Servicio que necesitas *</label>
             <select name="servicio" required>
@@ -411,8 +412,11 @@
           </div>
           <div class="form-group"><label>Dirección o barrio</label><input type="text" name="direccion" placeholder="Ej: Barrio La Libertad, Cúcuta"/></div>
           <div class="form-group"><label>Comentarios adicionales</label><textarea name="comentarios" placeholder="Escribe aquí cualquier detalle importante sobre tu caso..."></textarea></div>
-          <button type="submit" class="btn-submit"><i class="fab fa-whatsapp"></i> Enviar por WhatsApp</button>
-          <div class="form-success" id="formSuccess">✅ ¡Gracias! Tu solicitud se abrió en WhatsApp. Vianey te confirmará tu cita pronto. 💙</div>
+          <!-- Campos ocultos para Formspree -->
+          <input type="hidden" name="_subject" value="🩺 Nueva cita - Enfermera Vianey"/>
+          <input type="hidden" name="_next" value="https://vianeyarevalo.github.io#contacto"/>
+          <button type="submit" class="btn-submit" id="submitBtn"><i class="fas fa-paper-plane"></i> Enviar solicitud</button>
+          <div class="form-success" id="formSuccess">✅ ¡Solicitud enviada! Te llegará confirmación a tu correo y Vianey te contactará pronto por WhatsApp. 💙</div>
         </form>
       </div>
     </div>
@@ -469,11 +473,45 @@
   function closeMobile(){ham.classList.remove('open');mob.classList.remove('open');}
   function previewPhoto(e,id){const f=e.target.files[0];if(!f)return;document.getElementById(id).innerHTML=`<img src="${URL.createObjectURL(f)}" style="width:100%;height:100%;object-fit:cover;border-radius:24px;"/>`;}
   function galleryUpload(e,item){const f=e.target.files[0];if(!f)return;const u=URL.createObjectURL(f);item.innerHTML=f.type.startsWith('video')?`<video src="${u}" autoplay muted loop style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:16px;"></video>`:`<img src="${u}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:16px;"/>`;}
-  function sendForm(e){
-    e.preventDefault();const f=e.target;
-    const msg=`Hola Vianey 👋 Quiero agendar un servicio:%0A%0A👤 *Nombre:* ${f.nombre.value}%0A📱 *Teléfono:* ${f.telefono.value}%0A💉 *Servicio:* ${f.servicio.value}%0A📍 *Dirección:* ${f.direccion.value||'No especificada'}%0A📝 *Notas:* ${f.comentarios.value||'Ninguno'}`;
-    window.open(`https://wa.me/573148223252?text=${msg}`,'_blank');
-    document.getElementById('formSuccess').style.display='block';f.reset();
+  async function sendForm(e){
+    e.preventDefault();
+    const f = e.target;
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+
+    const data = {
+      nombre:      f.nombre.value,
+      email:       f.email.value || 'No proporcionado',
+      telefono:    f.telefono.value,
+      servicio:    f.servicio.value,
+      direccion:   f.direccion.value || 'No especificada',
+      comentarios: f.comentarios.value || 'Ninguno',
+      _subject:    '🩺 Nueva cita - Enfermera Vianey'
+    };
+
+    try {
+      const res = await fetch('https://formspree.io/f/xeevjbjr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        document.getElementById('formSuccess').style.display = 'block';
+        f.reset();
+        // También abre WhatsApp con el resumen
+        const msg = `Hola Vianey 👋 Acabo de enviar mi solicitud por el formulario web.%0A%0A👤 *Nombre:* ${data.nombre}%0A📱 *Teléfono:* ${data.telefono}%0A💉 *Servicio:* ${data.servicio}%0A📍 *Dirección:* ${data.direccion}%0A📝 *Notas:* ${data.comentarios}`;
+        setTimeout(() => window.open(`https://wa.me/573148223252?text=${msg}`, '_blank'), 800);
+      } else {
+        alert('Hubo un problema al enviar. Por favor escríbeme directamente al WhatsApp.');
+      }
+    } catch(err) {
+      alert('Error de conexión. Por favor escríbeme directamente al WhatsApp.');
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar solicitud';
   }
 </script>
 </body>
