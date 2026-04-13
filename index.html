@@ -491,15 +491,16 @@
     };
 
     try {
-      // Enviar a Formspree (correo de respaldo) y a Make (automatización) al mismo tiempo
+      // Enviar a Formspree (correo de respaldo) y a Make vía Google Apps Script (sin CORS)
       await Promise.allSettled([
         fetch('https://formspree.io/f/xeevjbjr', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(data)
         }),
-        fetch('https://hook.us2.make.com/8kj5dos3kjh21du4rxfqfq0tn3581fwq', {
+        fetch('https://script.google.com/macros/s/AKfycbzQ1KfTwvtPhCm1ngrkohuI4Y6-c3pEXv09J0z9XGM7GJ-oOGwBNeH4_GiVFpHue0K6/exec', {
           method: 'POST',
+          mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         })
