@@ -491,21 +491,27 @@
     };
 
     try {
-      const res = await fetch('https://formspree.io/f/xeevjbjr', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
-      });
+      // Enviar a Formspree (correo de respaldo) y a Make (automatización) al mismo tiempo
+      await Promise.allSettled([
+        fetch('https://formspree.io/f/xeevjbjr', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        }),
+        fetch('https://hook.us2.make.com/8kj5dos3kjh21du4rxfqfq0tn3581fwq', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+      ]);
 
-      if (res.ok) {
-        document.getElementById('formSuccess').style.display = 'block';
-        f.reset();
-        // También abre WhatsApp con el resumen
-        const msg = `Hola Vianey 👋 Acabo de enviar mi solicitud por el formulario web.%0A%0A👤 *Nombre:* ${data.nombre}%0A📱 *Teléfono:* ${data.telefono}%0A💉 *Servicio:* ${data.servicio}%0A📍 *Dirección:* ${data.direccion}%0A📝 *Notas:* ${data.comentarios}`;
-        setTimeout(() => window.open(`https://wa.me/573148223252?text=${msg}`, '_blank'), 800);
-      } else {
-        alert('Hubo un problema al enviar. Por favor escríbeme directamente al WhatsApp.');
-      }
+      document.getElementById('formSuccess').style.display = 'block';
+      f.reset();
+
+      // Abre WhatsApp con el resumen
+      const msg = `Hola Vianey 👋 Acabo de enviar mi solicitud por el formulario web.%0A%0A👤 *Nombre:* ${data.nombre}%0A📱 *Teléfono:* ${data.telefono}%0A💉 *Servicio:* ${data.servicio}%0A📍 *Dirección:* ${data.direccion}%0A📝 *Notas:* ${data.comentarios}`;
+      setTimeout(() => window.open(`https://wa.me/573148223252?text=${msg}`, '_blank'), 800);
+
     } catch(err) {
       alert('Error de conexión. Por favor escríbeme directamente al WhatsApp.');
     }
